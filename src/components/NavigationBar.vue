@@ -43,6 +43,7 @@ export default {
 
 <style scoped lang="scss">
 .navigation-bar {
+  background: #fff;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: 50px;

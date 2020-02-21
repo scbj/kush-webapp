@@ -10,6 +10,7 @@
           <div class="thumbnail"></div>
           <span class="title">{{ item.title }}</span>
           <span class="artist">{{ item.artist }}</span>
+          <button class="button-options"></button>
         </div>
       </template>
     </ListView>
@@ -24,9 +25,9 @@ export default {
     ListView
   },
 
-  data () {
-    return {
-      tracks: [
+  computed: {
+    tracks () {
+      return [
         {
           title: 'Waterfall (Lucy Remix)',
           artist: 'Rrose'
@@ -142,6 +143,15 @@ export default {
   .title,
   .artist {
     justify-self: flex-start;
+  }
+
+  .button-options {
+    grid-row: 1 / 3;
+    grid-column: 3 / 4;
+    align-self: center;
+    width: 3px;
+    height: 14px;
+    border: none;
   }
 }
 
