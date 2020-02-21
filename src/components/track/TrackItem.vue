@@ -23,7 +23,7 @@ export default {
       const contextMenuItems = [
         {
           label: 'Add to the queue',
-          handler () { }
+          handler () { console.log('to') }
         },
         {
           label: 'Add to a playlist',
@@ -39,10 +39,10 @@ export default {
         },
         {
           label: 'Remove',
-          handler () { }
+          handler () { alert('fefeorfgno') }
         }
       ]
-      EventBus.$emit('contextMenu:open', { items: contextMenuItems })
+      EventBus.$emit('contextMenu:open', { target: null, items: contextMenuItems })
     }
   }
 }

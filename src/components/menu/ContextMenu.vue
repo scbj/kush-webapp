@@ -2,9 +2,11 @@
   <div class="context-menu" v-show="isOpened" @click.self="close">
     <div class="content">
       <ul>
-        <li v-for="(item, index) in items" :key="index">
-          <span>{{ item.label }}</span>
-        </li>
+        <template v-for="(item, index) in items">
+          <li :key="index" @click="onItemClick(item.handler)">
+            <span>{{ item.label }}</span>
+          </li>
+        </template>
       </ul>
     </div>
   </div>
@@ -30,9 +32,14 @@ export default {
   },
 
   methods: {
-    open ({ items, target }) {
+    open ({ target, items }) {
       this.items = items
       this.isOpened = true
+    },
+
+    onItemClick (handler) {
+      handler()
+      this.close()
     },
 
     close () {
