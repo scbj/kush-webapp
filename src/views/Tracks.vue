@@ -4,7 +4,7 @@
       <button class="button button-play-all">Play All</button>
       <button class="button button-random">Random</button>
     </div>
-    <ListView class="tracks" :items="tracks">
+    <ListView class="tracks" :items="[tracks]">
       <template v-slot:item-template="{ item }">
         <TrackItem :data="item" />
       </template>

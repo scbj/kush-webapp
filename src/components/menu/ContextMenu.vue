@@ -1,6 +1,6 @@
 <template>
   <div class="context-menu" v-show="isOpened" @click.self="close">
-    <div class="content">
+    <div class="content" ref="content" :style="{ '--offset-y': offsetY + 'px' }">
       <ul>
         <template v-for="(item, index) in items">
           <li :key="index" @click="onItemClick(item.handler)">
@@ -19,7 +19,8 @@ export default {
   data () {
     return {
       isOpened: false,
-      items: []
+      items: [],
+      offsetY: 0
     }
   },
 
@@ -32,9 +33,19 @@ export default {
   },
 
   methods: {
-    open ({ target, items }) {
+    open ({ event, items }) {
       this.items = items
       this.isOpened = true
+
+      this.$nextTick(() => {
+        const { y } = event
+        const contentHeight = this.$refs.content.offsetHeight
+        const hasSpaceAvailable = screen.height > y + contentHeight
+
+        this.offsetY = hasSpaceAvailable
+          ? y
+          : y - contentHeight
+      })
     },
 
     onItemClick (handler) {
@@ -62,8 +73,8 @@ export default {
 
 .content {
   position: absolute;
-  top: 100px;
-  left: 20px;
+  top: var(--offset-y);
+  right: 0;
   min-width: 190px;
   background: #FFFFFF 0% 0% no-repeat padding-box;
   box-shadow: 0px 3px 20px #00000029;

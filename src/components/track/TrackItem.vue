@@ -19,7 +19,7 @@ export default {
   },
 
   methods: {
-    openContextMenu () {
+    openContextMenu (event) {
       const contextMenuItems = [
         {
           label: 'Add to the queue',
@@ -42,7 +42,7 @@ export default {
           handler () { alert('fefeorfgno') }
         }
       ]
-      EventBus.$emit('contextMenu:open', { target: null, items: contextMenuItems })
+      EventBus.$emit('contextMenu:open', { event, items: contextMenuItems })
     }
   }
 }
