@@ -4,14 +4,17 @@
     <nav>
       <NavigationBar />
     </nav>
+    <ContextMenu />
   </div>
 </template>
 
 <script>
-import NavigationBar from '@/components/NavigationBar'
+import ContextMenu from '@/components/menu/ContextMenu'
+import NavigationBar from '@/components/menu/NavigationBar'
 
 export default {
   components: {
+    ContextMenu,
     NavigationBar
   }
 }
