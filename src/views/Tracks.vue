@@ -14,7 +14,7 @@
 
 <script>
 import ListView from '@/components/ListView.vue'
-import TrackItem from '@/components/tracks/TrackItem.vue'
+import TrackItem from '@/components/track/TrackItem.vue'
 
 export default {
   components: {
