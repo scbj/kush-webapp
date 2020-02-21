@@ -41,7 +41,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 .navigation-bar {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -63,7 +63,9 @@ export default {
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
-  font: DemiBold 14px/19px TT Commons;
+  font-family: 'TT Commons';
+  font-size: 14px;
+  font-weight: 600;
   letter-spacing: 0;
   color: #4642BB;
   opacity: 0;
