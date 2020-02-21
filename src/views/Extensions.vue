@@ -6,9 +6,9 @@
         <ExtensionItem />
       </ul>
     </section>
-    <section class="others-extensions">
+    <!-- <section class="others-extensions">
       <h2>Others</h2>
-    </section>
+    </section> -->
   </div>
 </template>
 
