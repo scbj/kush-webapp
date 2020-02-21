@@ -6,7 +6,9 @@
     </div>
     <ListView class="tracks" :items="tracks">
       <template v-slot:item-template="{ item }">
-        <TrackItem :data="item" />
+        <TrackItem :data="item">
+          <span>Hello, world!</span>
+        </TrackItem>
       </template>
     </ListView>
   </div>

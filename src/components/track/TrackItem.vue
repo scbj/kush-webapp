@@ -3,16 +3,46 @@
     <div class="thumbnail"></div>
     <span class="title">{{ data.title }}</span>
     <span class="artist">{{ data.artist }}</span>
-    <button class="button-options"></button>
+    <button class="button-options" @click="openContextMenu"></button>
   </div>
 </template>
 
 <script>
+import { EventBus } from '@/reactivity/event-bus'
+
 export default {
   props: {
     data: {
       type: Object,
       required: true
+    }
+  },
+
+  methods: {
+    openContextMenu () {
+      const contextMenuItems = [
+        {
+          label: 'Add to the queue',
+          handler () { }
+        },
+        {
+          label: 'Add to a playlist',
+          handler () { }
+        },
+        {
+          label: 'Go to the artist',
+          handler () { }
+        },
+        {
+          label: 'Share',
+          handler () { }
+        },
+        {
+          label: 'Remove',
+          handler () { }
+        }
+      ]
+      EventBus.$emit('contextMenu:open', { items: contextMenuItems })
     }
   }
 }

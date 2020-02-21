@@ -1,20 +1,43 @@
 <template>
-  <div class="context-menu" v-show="isOpened" @click="close">
-    Yo
+  <div class="context-menu" v-show="isOpened" @click.self="close">
+    <div class="content">
+      <ul>
+        <li v-for="(item, index) in items" :key="index">
+          <span>{{ item.label }}</span>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
 <script>
-import { get, dispatch } from 'vuex-pathify'
+import { EventBus } from '@/reactivity/event-bus'
 
 export default {
-  computed: {
-    isOpened: get('contextMenu/isOpened')
+  data () {
+    return {
+      isOpened: false,
+      items: []
+    }
+  },
+
+  mounted () {
+    EventBus.$on('contextMenu:open', this.open)
+  },
+
+  beforeDestroy () {
+    EventBus.$off('contextMenu:open', this.open)
   },
 
   methods: {
+    open ({ items, target }) {
+      this.items = items
+      this.isOpened = true
+    },
+
     close () {
-      dispatch('contextMenu/close')
+      this.items = []
+      this.isOpened = false
     }
   }
 }
@@ -22,12 +45,38 @@ export default {
 
 <style lang="scss" scoped>
 .context-menu {
-  background: rgba(200,200,200,0.4);
   position: fixed;
   z-index: 2000;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
+}
+
+.content {
+  position: absolute;
+  top: 100px;
+  left: 20px;
+  min-width: 190px;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 20px #00000029;
+  border-radius: 4px;
+}
+
+li {
+  padding: 9px 16px;
+  text-align: left;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0;
+  color: #2E2E2E;
+
+  &:first-of-type {
+    padding-top: 16px;
+  }
+
+  &:last-of-type {
+    padding-bottom: 16px;
+  }
 }
 </style>
