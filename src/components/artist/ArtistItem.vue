@@ -2,16 +2,42 @@
   <div class="artist-item">
     <div class="avatar"></div>
     <span class="name">{{ data.name }}</span>
-    <button class="button-options"></button>
+    <button class="button-options" @click="openContextMenu"></button>
   </div>
 </template>
 
 <script>
+import { EventBus } from '@/reactivity/event-bus'
+
 export default {
   props: {
     data: {
       type: Object,
       required: true
+    }
+  },
+
+  methods: {
+    openContextMenu (event) {
+      const contextMenuItems = [
+        {
+          label: 'Add to the queue',
+          handler () { console.log('to') }
+        },
+        {
+          label: 'Add to a playlist',
+          handler () { }
+        },
+        {
+          label: 'Share',
+          handler () { }
+        },
+        {
+          label: 'Remove',
+          handler: () => alert(this.data.name)
+        }
+      ]
+      EventBus.$emit('contextMenu:open', { event, items: contextMenuItems })
     }
   }
 }
