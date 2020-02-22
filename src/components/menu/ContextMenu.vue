@@ -7,8 +7,10 @@
 </template>
 
 <script>
-import { EventBus } from '@/reactivity/event-bus'
 import ContextMenuList from '@/components/menu/ContextMenuList.vue'
+
+import { EventBus } from '@/reactivity/event-bus'
+import { getPointerPosition, getRectPropertiesOf } from '@/utils/measure'
 
 export default {
   components: {
@@ -23,32 +25,45 @@ export default {
   },
 
   mounted () {
+    // Subscribe to Event Bus events
     EventBus.$on('contextMenu:open', this.open)
     EventBus.$on('contextMenu:close', this.close)
   },
 
   beforeDestroy () {
+    // Unsubscribe from events to which we have subscribed
     EventBus.$off('contextMenu:open', this.open)
     EventBus.$off('contextMenu:close', this.close)
   },
 
   methods: {
     open ({ event, items }) {
+      // Store active context menu items and show the modal
       this.items = items
       this.isOpened = true
 
+      // Wait for the items to be rendered before compute the content offset Y
       this.$nextTick(() => {
-        const { y } = event
-        const contentHeight = this.$refs.content.offsetHeight
-        const hasSpaceAvailable = screen.height > y + contentHeight
-
-        this.offsetY = hasSpaceAvailable
-          ? y
-          : y - contentHeight
+        this.computeOffsetY(event)
       })
     },
 
+    /**
+     * Calculate and apply offset y to the content element.
+     * @param {Event} event
+     */
+    computeOffsetY (event) {
+      const { y } = getPointerPosition(event)
+      const { height } = getRectPropertiesOf({ element: this.$refs.content })
+      const hasSpaceAvailable = screen.height > y + height
+
+      this.offsetY = hasSpaceAvailable
+        ? y
+        : y - height
+    },
+
     close () {
+      // Reset items array and hide the modal
       this.items = []
       this.isOpened = false
     }
