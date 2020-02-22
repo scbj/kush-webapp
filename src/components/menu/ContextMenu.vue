@@ -1,21 +1,19 @@
 <template>
   <div class="context-menu" v-show="isOpened" @click.self="close">
     <div class="content" ref="content" :style="{ '--offset-y': offsetY + 'px' }">
-      <ul>
-        <template v-for="(item, index) in items">
-          <li :key="index" @click="onItemClick(item.handler)">
-            <span>{{ item.label }}</span>
-          </li>
-        </template>
-      </ul>
+      <ContextMenuList :items="items" />
     </div>
   </div>
 </template>
 
 <script>
 import { EventBus } from '@/reactivity/event-bus'
+import ContextMenuList from '@/components/menu/ContextMenuList.vue'
 
 export default {
+  components: {
+    ContextMenuList
+  },
   data () {
     return {
       isOpened: false,
@@ -26,10 +24,12 @@ export default {
 
   mounted () {
     EventBus.$on('contextMenu:open', this.open)
+    EventBus.$on('contextMenu:close', this.close)
   },
 
   beforeDestroy () {
     EventBus.$off('contextMenu:open', this.open)
+    EventBus.$off('contextMenu:close', this.close)
   },
 
   methods: {
@@ -46,11 +46,6 @@ export default {
           ? y
           : y - contentHeight
       })
-    },
-
-    onItemClick (handler) {
-      handler()
-      this.close()
     },
 
     close () {
@@ -79,22 +74,5 @@ export default {
   background: #FFFFFF 0% 0% no-repeat padding-box;
   box-shadow: 0px 3px 20px #00000029;
   border-radius: 4px;
-}
-
-li {
-  padding: 9px 16px;
-  text-align: left;
-  font-size: 16px;
-  font-weight: 600;
-  letter-spacing: 0;
-  color: #2E2E2E;
-
-  &:first-of-type {
-    padding-top: 16px;
-  }
-
-  &:last-of-type {
-    padding-bottom: 16px;
-  }
 }
 </style>
