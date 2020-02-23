@@ -12,6 +12,8 @@
 import ArtistItem from '@/components/artist/ArtistItem.vue'
 import ListView from '@/components/ListView.vue'
 
+import { dispatch, get } from 'vuex-pathify'
+
 export default {
   components: {
     ArtistItem,
@@ -19,37 +21,11 @@ export default {
   },
 
   computed: {
-    artists () {
-      return [
-        {
-          name: 'Bonga'
-        },
-        {
-          name: 'Coccolino Deep'
-        },
-        {
-          name: 'Emeli Sandé'
-        },
-        {
-          name: 'Le DJ Nab'
-        },
-        {
-          name: 'Martin Roth'
-        },
-        {
-          name: 'Noel Harrison'
-        },
-        {
-          name: 'Orelse'
-        },
-        {
-          name: 'Qarcii'
-        },
-        {
-          name: 'Short Notice'
-        }
-      ]
-    }
+    artists: get('artist/all')
+  },
+
+  mounted () {
+    dispatch('artist/list')
   }
 }
 </script>
