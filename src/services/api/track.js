@@ -4,11 +4,13 @@ export function list () {
     data: [
       {
         title: 'Waterfall (Lucy Remix)',
-        artist: 'Rrose'
+        artist: 'Rrose',
+        url: 'https://soundcloud.com/lucy/rrose-waterfall-lucy-remix'
       },
       {
         title: "Hope he'll never die [яaш мvzak]",
-        artist: 'Soft Blade'
+        artist: 'Soft Blade',
+        url: 'https://soundcloud.com/soft_blade/hope-hell-never-die'
       },
       {
         title: 'I Give U My Love',
@@ -16,7 +18,8 @@ export function list () {
       },
       {
         title: 'SATRN',
-        artist: 'deadmau5'
+        artist: 'deadmau5',
+        url: 'https://soundcloud.com/lourspolair/deadmau5-satrn'
       },
       {
         title: 'Ylang Ylang',

@@ -3,7 +3,7 @@
     <div class="thumbnail"></div>
     <span class="title">{{ data.title }}</span>
     <span class="artist">{{ data.artist }}</span>
-    <button class="button-options" @click="openContextMenu"></button>
+    <button class="button-options" @click.stop="openContextMenu"></button>
   </div>
 </template>
 
