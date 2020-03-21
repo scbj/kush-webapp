@@ -1,10 +1,10 @@
 <template>
   <div class="playback-controls">
-    <div class="button-loop"></div>
-    <div class="button-previous"></div>
-    <div class="button-play-pause"></div>
-    <div class="button-next"></div>
-    <div class="button-shuffle"></div>
+    <div class="button-loop" @click="$emit('activateLoop')"></div>
+    <div class="button-previous" @click="$emit('previousTrack')"></div>
+    <div class="button-play-pause" @click="$emit('changeStatus')"></div>
+    <div class="button-next" @click="$emit('nextTrack')"></div>
+    <div class="button-shuffle" @click="$emit('activateShuffle')"></div>
   </div>
 </template>
 
@@ -14,7 +14,7 @@
   grid-template-columns: 1fr repeat(3, auto) 1fr;
   grid-template-rows: 1fr;
   align-items: center;
-  padding: 0 24px;
+  padding: 20px 24px;
 }
 
 .button-play-pause {

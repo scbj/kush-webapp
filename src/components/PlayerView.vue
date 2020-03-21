@@ -13,9 +13,9 @@
 
     <PlaybackControls
       :playing="playing"
-      @changeStatus="new Error('Not implemented')"
-      @nextTrack="new Error('Not implemented')"
-      @previousTrack="new Error('Not implemented')"
+      @changeStatus="toggleStatus"
+      @nextTrack="next"
+      @previousTrack="previous"
       @activateShuffle="new Error('Not implemented')"
       @activateLoop="new Error('Not implemented')"
     />
