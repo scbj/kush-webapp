@@ -5,17 +5,20 @@
       <NavigationBar />
     </nav>
     <ContextMenu />
+    <PlayerView />
   </div>
 </template>
 
 <script>
 import ContextMenu from '@/components/menu/ContextMenu'
 import NavigationBar from '@/components/menu/NavigationBar'
+import PlayerView from '@/components/PlayerView'
 
 export default {
   components: {
     ContextMenu,
-    NavigationBar
+    NavigationBar,
+    PlayerView
   }
 }
 </script>
@@ -35,6 +38,14 @@ export default {
     position: fixed;
     bottom: 0;
     width: 100%;
+  }
+
+  > .player-view {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
   }
 }
 </style>

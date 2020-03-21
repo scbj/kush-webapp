@@ -5,8 +5,10 @@ import socket from '@/services/socket'
 
 export const state = {
   activeTrack: {
-    title: 'I Will Survive',
-    artist: 'Unknown'
+    title: 'Rick and Morty (Rameses B Psytrance Remix)',
+    channel: 'Rameses B',
+    url: 'https://soundcloud.com/ramesesb/rick-and-morty-rameses-b-psytrance-remix',
+    thumbnail: 'https://i1.sndcdn.com/artworks-000236179481-dmnpo4-t500x500.jpg'
   },
   playing: true
 }
