@@ -3,7 +3,7 @@
     <section class="my-extensions">
       <h2>My extensions</h2>
       <ul class="extension-list">
-        <ExtensionItem />
+        <ExtensionItem @click.native="connect" />
       </ul>
     </section>
     <!-- <section class="others-extensions">
@@ -18,6 +18,14 @@ import ExtensionItem from '@/components/extension/ExtensionItem.vue'
 export default {
   components: {
     ExtensionItem
+  },
+
+  methods: {
+    connect () {
+      this.$store.dispatch('playback/connect', {
+        extensionId: '5e752988a4c3105a3a45aae3'
+      })
+    }
   }
 }
 </script>

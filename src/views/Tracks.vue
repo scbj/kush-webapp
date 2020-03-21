@@ -6,7 +6,7 @@
     </div>
     <ListView class="tracks" :items="tracks">
       <template v-slot:item-template="{ item }">
-        <TrackItem :data="item" />
+        <TrackItem :data="item" @click.native="playTrack(item)" />
       </template>
     </ListView>
   </div>
@@ -30,6 +30,13 @@ export default {
 
   mounted () {
     dispatch('track/list')
+  },
+
+  methods: {
+    playTrack (track) {
+      console.log('☝️: playTrack -> track', track)
+      dispatch('playback/play', track)
+    }
   }
 }
 </script>
