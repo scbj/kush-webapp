@@ -45,16 +45,20 @@ export default {
 
 <style lang="scss" scoped>
 .player-timeline {
+  $span-time-width: minmax(38px, auto);
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: $span-time-width 1fr $span-time-width;
   grid-template-rows: 1fr;
-  gap: 10px;
-  padding: 18px;
+  padding: 18px 10px;
 }
 
 .time {
   font-family: 'TT Commons';
   font-weight: 400;
-  font-size: 14px
+  font-size: 14px;
+  transform: translateY(.1em);
+
+  &:first-of-type { justify-self: flex-start; }
+  &:last-of-type { justify-self: flex-end; }
 }
 </style>
