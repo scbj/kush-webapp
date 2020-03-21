@@ -23,7 +23,7 @@ export default {
   methods: {
     connect () {
       this.$store.dispatch('playback/connect', {
-        extensionId: '5e752988a4c3105a3a45aae3'
+        extensionId: '5e758fd2f88cf5d5fe756511'
       })
     }
   }

@@ -2,23 +2,38 @@
   <div id="app">
     <router-view/>
     <nav>
+      <MiniPlayer />
       <NavigationBar />
     </nav>
     <ContextMenu />
-    <PlayerView />
+    <PlayerView v-show="isPlayerModalActive" />
   </div>
 </template>
 
 <script>
+import { get } from 'vuex-pathify'
+
 import ContextMenu from '@/components/menu/ContextMenu'
+import MiniPlayer from '@/components/MiniPlayer'
 import NavigationBar from '@/components/menu/NavigationBar'
 import PlayerView from '@/components/PlayerView'
 
 export default {
   components: {
     ContextMenu,
+    MiniPlayer,
     NavigationBar,
     PlayerView
+  },
+
+  data () {
+    return {
+      playerModalActive: false
+    }
+  },
+
+  computed: {
+    isPlayerModalActive: get('ui/isPlayerModalActive')
   }
 }
 </script>
