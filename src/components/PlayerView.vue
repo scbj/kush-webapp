@@ -3,7 +3,7 @@
     <PlayerCover :src="activeTrack.thumbnail"/>
     <PlayerTimeline
       :duration="201"
-      :now="18"
+      :now="28"
       @changed="new Error('Not implemented')"
     />
     <div class="track-infos">
