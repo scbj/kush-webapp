@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import { dispatch, get } from 'vuex-pathify'
+import { call, get } from 'vuex-pathify'
 
 import PlaybackControls from '@/components/PlaybackControls'
 import PlayerCover from '@/components/PlayerCover'
@@ -50,17 +50,9 @@ export default {
   },
 
   methods: {
-    next () {
-      dispatch('playback/next')
-    },
-
-    previous () {
-      dispatch('playback/previous')
-    },
-
-    toggleStatus () {
-      dispatch('playback/toggleStatus')
-    }
+    next: call('playback/next'),
+    previous: call('playback/pre,vious'),
+    toggleStatus: call('playback/toggleStatus')
   }
 }
 </script>
