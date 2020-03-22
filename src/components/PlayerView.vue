@@ -2,7 +2,7 @@
   <div class="player-view">
     <PlayerCover :src="activeTrack.thumbnail"/>
     <PlayerTimeline
-      :duration="201"
+      :duration="activeTrack.duration"
       :now="28"
       @changed="new Error('Not implemented')"
     />
@@ -51,7 +51,7 @@ export default {
 
   methods: {
     next: call('playback/next'),
-    previous: call('playback/pre,vious'),
+    previous: call('playback/previous'),
     toggleStatus: call('playback/toggleStatus')
   }
 }
