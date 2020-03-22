@@ -13,11 +13,11 @@ export default {
   props: {
     duration: {
       type: Number,
-      required: true
+      default: 100
     },
     now: {
       type: Number,
-      required: true
+      default: 0
     }
   },
 
