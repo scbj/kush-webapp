@@ -46,7 +46,7 @@ export default {
 
   computed: {
     activeTrack: get('playback/activeTrack'),
-    playing: get('playback/playing')
+    playing: get('playback/status@playing')
   },
 
   methods: {

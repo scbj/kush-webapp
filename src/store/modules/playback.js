@@ -10,7 +10,11 @@ export const state = {
     url: 'https://soundcloud.com/ramesesb/rick-and-morty-rameses-b-psytrance-remix',
     thumbnail: 'https://i1.sndcdn.com/artworks-000236179481-dmnpo4-t500x500.jpg'
   },
-  playing: true
+  status: {
+    playing: true,
+    shuffling: false,
+    repeating: 'non'
+  }
 }
 
 export const mutations = make.mutations(state)
@@ -21,12 +25,12 @@ export const actions = {
     commit('SET_ALL', data)
   },
 
-  connect ({ commit }, { extensionId }) {
+  connect ({ commit, state }, { extensionId }) {
     // Retreive access token from store module auth
     const accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTY5NDAzNDcyNGNkMmRmODEzMWU4ZDYiLCJ1c2VybmFtZSI6ImpvY2siLCJlbWFpbCI6ImpvaG4ud2lja0BleGFtcGxlLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNTg0NjgwNDY1LCJleHAiOjE1ODUyODUyNjV9.vWzHG9cNhXetfbAzqKu6BJx0SnQnVGFZZVqugR6z76Y'
     socket.connect(accessToken, extensionId)
     socket.on('playback:statusChanged', payload => {
-      commit('SET_PLAYING', payload.playing)
+      commit('SET_STATUS', Object.assign(state.status, payload))
     })
     socket.on('playback:trackChanged', payload => {
       commit('SET_ACTIVE_TRACK', payload)
