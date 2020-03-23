@@ -2,12 +2,23 @@
   <li class="extension-item">
     <div class="content">
       <div class="icon"></div>
-      <span class="name">Home</span>
+      <span class="name">{{ name }}</span>
       <div class="peoples"></div>
       <button class="button-options"></button>
     </div>
   </li>
 </template>
+
+<script>
+export default {
+  props: {
+    name: {
+      type: String,
+      default: ''
+    }
+  }
+}
+</script>
 
 <style lang="scss" scoped>
 .extension-item {

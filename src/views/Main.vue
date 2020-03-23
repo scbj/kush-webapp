@@ -4,7 +4,9 @@
       <input class="search-bar" type="text">
       <div class="avatar"></div>
     </header>
-    <RouterView />
+    <KeepAlive>
+      <RouterView />
+    </KeepAlive>
   </div>
 </template>
 

@@ -3,8 +3,12 @@
     <section class="my-extensions">
       <h2>My extensions</h2>
       <ul class="extension-list">
-        <ExtensionItem @click.native="connect" />
       </ul>
+      <ListView class="extension-list" :items="extensions">
+        <template v-slot:item-template="{ item }">
+          <ExtensionItem :name="item.name" @click.native="connect(item)" />
+        </template>
+      </ListView>
     </section>
     <!-- <section class="others-extensions">
       <h2>Others</h2>
@@ -13,17 +17,29 @@
 </template>
 
 <script>
+import { dispatch, get } from 'vuex-pathify'
+
 import ExtensionItem from '@/components/extension/ExtensionItem.vue'
+import ListView from '@/components/ListView.vue'
 
 export default {
   components: {
-    ExtensionItem
+    ExtensionItem,
+    ListView
+  },
+
+  computed: {
+    extensions: get('extension/all')
+  },
+
+  mounted () {
+    dispatch('extension/list')
   },
 
   methods: {
-    connect () {
-      this.$store.dispatch('playback/connect', {
-        extensionId: '5e758fd2f88cf5d5fe756511'
+    connect (extension) {
+      dispatch('playback/connect', {
+        extensionId: extension.id
       })
     }
   }
