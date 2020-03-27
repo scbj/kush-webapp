@@ -2,7 +2,7 @@
   <main>
     <header>
       <input class="search-bar" type="text">
-      <div class="avatar"></div>
+      <div class="avatar" @click="logout"></div>
     </header>
     <KeepAlive>
       <RouterView />
@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { get } from 'vuex-pathify'
+import { call, get } from 'vuex-pathify'
 
 import MiniPlayer from '@/components/MiniPlayer'
 import NavigationBar from '@/components/menu/NavigationBar'
@@ -37,6 +37,10 @@ export default {
 
   computed: {
     isPlayerModalActive: get('ui/isPlayerModalActive')
+  },
+
+  methods: {
+    logout: call('auth/logout')
   }
 }
 </script>
