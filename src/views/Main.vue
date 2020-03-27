@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <main>
     <header>
       <input class="search-bar" type="text">
       <div class="avatar"></div>
@@ -7,10 +7,59 @@
     <KeepAlive>
       <RouterView />
     </KeepAlive>
-  </div>
+    <nav>
+      <MiniPlayer />
+      <NavigationBar />
+    </nav>
+    <PlayerView v-show="isPlayerModalActive" />
+  </main>
 </template>
 
+<script>
+import { get } from 'vuex-pathify'
+
+import MiniPlayer from '@/components/MiniPlayer'
+import NavigationBar from '@/components/menu/NavigationBar'
+import PlayerView from '@/components/PlayerView'
+
+export default {
+  components: {
+    MiniPlayer,
+    NavigationBar,
+    PlayerView
+  },
+
+  data () {
+    return {
+      playerModalActive: false
+    }
+  },
+
+  computed: {
+    isPlayerModalActive: get('ui/isPlayerModalActive')
+  }
+}
+</script>
+
 <style lang="scss" scoped>
+main {
+  position: relative;
+
+  > nav {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+
+  > .player-view {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
 header {
   display: grid;
   grid-template-columns: 1fr auto;

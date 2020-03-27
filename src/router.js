@@ -1,10 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Main from './views/Main.vue'
-import Tracks from './views/Tracks.vue'
-import Artists from './views/Artists.vue'
-import Playlists from './views/Playlists.vue'
-import Extensions from './views/Extensions.vue'
 
 Vue.use(Router)
 
@@ -14,29 +9,34 @@ export default new Router({
   routes: [
     {
       path: '/',
-      component: Main,
+      component: () => import('./views/Main.vue'),
       children: [
         {
           path: '',
           name: 'tracks',
-          component: Tracks
+          component: () => import('./views/Tracks.vue')
         },
         {
           path: 'artists',
           name: 'artists',
-          component: Artists
+          component: () => import('./views/Artists.vue')
         },
         {
           path: 'playlists',
           name: 'playlists',
-          component: Playlists
+          component: () => import('./views/Playlists.vue')
         },
         {
           path: 'extensions',
           name: 'extensions',
-          component: Extensions
+          component: () => import('./views/Extensions.vue')
         }
       ]
+    },
+
+    {
+      path: '/auth',
+      component: () => import('./views/Auth.vue')
     }
     // {
     //   path: '/about',
